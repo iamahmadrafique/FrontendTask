@@ -59,7 +59,7 @@ const PrettoSlider = styled(Slider)({
 
 export default function Home() {
   const [activeOption, setActiveOption] = useState(0);
-  const [selectedDis, setSelectedDis] = useState();
+  const [selectedDis, setSelectedDis] = useState<any>();
   const [allData, setAllData] = useState(contentTypes);
   const [value, setValue] = React.useState<string | null>();
   const [inputValue, setInputValue] = React.useState('');
