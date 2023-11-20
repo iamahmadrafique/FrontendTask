@@ -1,5 +1,6 @@
 # FrontendTask
-
+For clone run folowing command in your command prompt:
+# git clone 
 After clone:
 Run following command to install node modules
 # npm i
