@@ -1,4 +1,4 @@
-export const questionTitle = {
+export const questionTitle: { [key: number]: string } = {
     1: "Which type of Fun content do you want to create?",
     2: "What should be the title for the Education discussion?",
     3: "What should be the title for the Sports discussion?",
