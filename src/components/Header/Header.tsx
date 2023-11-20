@@ -22,9 +22,9 @@ function Header() {
   return (
      <div className={styles.topbarRoot}>
         <div className={styles.topbarLeft}>
-            <Image src={images.backBtn} className={styles.backBtn}/>
+            <Image src={images.backBtn} alt='' className={styles.backBtn}/>
             <div className={styles.departmenHead}>
-                <h3>Media management<Image src={images.editBtn} className={styles.editBtn}/></h3>
+                <h3>Media management<Image alt='' src={images.editBtn} className={styles.editBtn}/></h3>
                 <p>Draft campaign</p>
             </div>
         </div>
@@ -33,7 +33,7 @@ function Header() {
                 <h3>Jane Cooper</h3>
                 <p>Change profile</p>
             </div>
-            <Image src={images.avatar} className={styles.avatar}/>
+            <Image src={images.avatar} alt='' className={styles.avatar}/>
         </div>
      </div>
   );

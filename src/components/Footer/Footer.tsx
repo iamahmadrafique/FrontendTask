@@ -10,8 +10,8 @@ const Footer = () => {
                <p className='font-poppins'> Back</p>
             </div>
             <div className={styles.nextBtn}>
-                <Image src={images?.nextBtn}  className={styles?.nextBtnImg}/>
-                <Image src={images?.nextBtnMbl}  className={styles?.nextBtnImgMbl}/>
+                <Image src={images?.nextBtn} alt=''  className={styles?.nextBtnImg}/>
+                <Image src={images?.nextBtnMbl} alt=''  className={styles?.nextBtnImgMbl}/>
             </div>
         </div>
     )
