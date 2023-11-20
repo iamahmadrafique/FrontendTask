@@ -8,7 +8,7 @@ import Menu from "@mui/material/Menu";
 import MenuIcon from "@mui/icons-material/Menu";
 import Container from "@mui/material/Container";
 import MenuItem from "@mui/material/MenuItem";
-import { images } from "../../assets/Images.ts";
+import { images } from '@/assets/Images';
 import Link from 'next/link';
 import { Button } from "@mui/material";
 import styles from './Header.module.css';
