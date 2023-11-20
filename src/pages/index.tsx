@@ -1,15 +1,11 @@
-import React, { useState, useEffect } from 'react';
-import { Inter } from 'next/font/google'
+import React, { useState } from 'react';
 import Head from "next/head"
 import Header from '@/components/Header/Header';
-import { Autocomplete, Chip, Paper, Slider, TextField, styled } from '@mui/material';
+import { Autocomplete, Paper, Slider, TextField, styled } from '@mui/material';
 import ClearIcon from '@mui/icons-material/Clear';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import Footer from '@/components/Footer/Footer';
-import { contentTypes } from '@/utility/data';
-
-const inter = Inter({ subsets: ['latin'] })
-const options = ['Option 1', 'Option 2'];
+import { contentTypes, questionTitle } from '@/utility/data';
 
 
 const PrettoSlider = styled(Slider)({
@@ -21,8 +17,8 @@ const PrettoSlider = styled(Slider)({
   },
   '& .MuiSlider-rail': {
     height: 8,
-    borderRadius: 4, // add this to round the corners of the rail
-    backgroundColor: '#3A3940', // set the background color to gray
+    borderRadius: 4,
+    backgroundColor: '#3A3940',
   },
   '& .MuiSlider-thumb': {
     height: 24,
@@ -58,9 +54,8 @@ const PrettoSlider = styled(Slider)({
 });
 
 export default function Home() {
-  const [activeOption, setActiveOption] = useState(0);
-  const [selectedDis, setSelectedDis] = useState<any>();
-  const [allData, setAllData] = useState(contentTypes);
+  const [allData] = useState(contentTypes);
+  const [selectedOption, setSelectedOption] = useState<any>(allData[0]);
   const [value, setValue] = React.useState<string | null>();
   const [inputValue, setInputValue] = React.useState('');
 
@@ -79,37 +74,44 @@ export default function Home() {
         <div className='questions-root'>
           <h1 className='question-head font-poppins select-question'>What type of content are you creating?</h1>
           <div className='options-root mt-4 sm:mt-7'>
-            {allData.map((i, index)=>{
-              return(
-                <div key={index} className={`option-div rounded-full flex text-sm font-poppins justify-center items-center px-8 text-white ${selectedDis?.title === i.title ? 'activeOpt' : '' }`} onClick={()=>{setSelectedDis(i)}}>{i.title}</div>
+            {allData.map((i, index) => {
+              return (
+                <div key={index}
+                  className={`option-div rounded-full flex text-sm font-poppins justify-center items-center px-8 text-white ${selectedOption?.title === i.title ? 'activeOpt' : ''}`}
+                  onClick={() => { setSelectedOption(i); }}>{i.title}</div>
               )
             })}
-            
+
             {/* <div className={`option-div rounded-full flex text-sm font-poppins justify-center items-center px-8 text-white`}>Education</div> */}
           </div>
 
         </div>
         <div className='questions-root'>
-          <h1 className='question-head font-poppins select-question'>Which type of “Fun” content do you want to create?</h1>
+          <h1 className='question-head font-poppins select-question'>
+            <p>{questionTitle[selectedOption.id]}</p>
+          </h1>
           <div className='mt-5 select-div'>
             <Autocomplete
               value={value}
+              freeSolo
               onChange={(event: any, newValue: string | null) => {
                 setValue(newValue);
-              }}
+              }
+              }
+              clearOnBlur={true}
               inputValue={inputValue}
-              onInputChange={(event, newInputValue) => {
+              onInputChange={(event: any, newInputValue: React.SetStateAction<string>) => {
                 setInputValue(newInputValue);
               }}
               id="controllable-states-demo"
-              options={selectedDis?.options}
+              options={selectedOption?.options}
               className='autoComplete-width'
               sx={{ color: "white" }}
               renderInput={(params) => <TextField {...params} label="" sx={{ color: 'white', background: '#3A3940', borderRadius: '15px' }} InputProps={{
                 ...params.InputProps,
 
                 classes: {
-                  focused: 'focus-class', // Define your own focused class
+                  focused: 'focus-class',
                 },
                 placeholder: 'Search',
                 style: { color: 'white' },
@@ -119,7 +121,7 @@ export default function Home() {
                   {children}
                 </Paper>
               )}
-              clearIcon={<ClearIcon style={{ color: 'white' }} />} // Set the color of the clear icon
+              clearIcon={<ClearIcon style={{ color: 'white' }} />}
               popupIcon={<KeyboardArrowDownIcon style={{ color: 'white' }} />}
             />
           </div>
