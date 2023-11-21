@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Head from "next/head"
 import Header from '@/components/Header/Header';
 import { Autocomplete, Paper, Slider, TextField, styled } from '@mui/material';
@@ -59,6 +59,10 @@ export default function Home() {
   const [value, setValue] = React.useState<string | null>();
   const [inputValue, setInputValue] = React.useState('');
 
+  useEffect(() => {
+    setInputValue('');
+  }, [selectedOption])
+
   return (
     <>
       <Head>
@@ -80,10 +84,7 @@ export default function Home() {
                   className={`option-div rounded-full flex text-sm font-poppins justify-center items-center px-8 text-white ${selectedOption?.title === i.title ? 'activeOpt' : ''}`}
                   onClick={() => { setSelectedOption(i); }}>{i.title}</div>
               )
-            })}
-
-            {/* <div className={`option-div rounded-full flex text-sm font-poppins justify-center items-center px-8 text-white`}>Education</div> */}
-          </div>
+            })} </div>
 
         </div>
         <div className='questions-root'>
